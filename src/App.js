@@ -1,44 +1,23 @@
 import logo from './logo.svg';
+import React,{Component} from 'react';
 import './App.css';
 import * as ReactBootStrap from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-function App() {
-  /*constructor(props){
-    super(props);
-    this.state={
-      items:[],
-      isLoaded:false,
-    }
-  }
-  componentDidMount(){
-    fetch("https://ibm-sprint.herokuapp.com/session")
-    .then(res=> res.json())
-    .then(json=>{
-      this.setState({
-        isLoaded:true;
-        items:json,
-      })
-    });
 
-  }*/
-  //console.log(this)
-   const players=[{"SS_id":1001,"SS_Name":"Session1","SS_Duration":112,"SS_Type":"V"},
+  
+
+/*const players=[{"SS_id":1001,"SS_Name":"Session1","SS_Duration":112,"SS_Type":"V"},
   {"SS_id":1002,"SS_Name":"Session2","SS_Duration":60,"SS_Type":"V"},
   {"SS_id":1003,"SS_Name":"Session3","SS_Duration":15,"SS_Type":"P"},
   {"SS_id":1004,"SS_Name":"Session4","SS_Duration":120,"SS_Type":"V"},
   {"SS_id":1005,"SS_Name":"Session5","SS_Duration":15,"SS_Type":"P"}]
-  console.log(players); 
-   /*const url="https://ibm-sprint.herokuapp.com/session";
-    const response= fetch(url);
-    const data= response.json();
-    console.log(data);
-  /*fetch("https://ibm-sprint.herokuapp.com/session")
-      .then(console.log())
   */
- 
+  //console.log(players);
+  
+  var players=[];
   const renderPlayer=(player,index)=>{
     return(
-
+  
       <tr key={index}>
         <td>{player.SS_id}</td>
         <a href={"https://ibm-sprint.herokuapp.com/content/"+player.SS_id}><td>{player.SS_Name}</td></a>
@@ -47,7 +26,34 @@ function App() {
       </tr>
     )
   }
-
+   
+  
+class App extends Component{
+  state={
+    loading:true,
+    data1:[]
+  }
+async componentDidMount(){
+  const response = await fetch("https://ibm-sprint.herokuapp.com/session");
+  const data=await response.json();
+  
+  this.setState({data1: data});
+  //console.log(this.state.data1);
+}
+  /*
+  
+  //console.log(this)
+   
+   /*const url="https://ibm-sprint.herokuapp.com/session";
+    const response= fetch(url);
+    const data= response.json();
+    console.log(data);
+  /*fetch("https://ibm-sprint.herokuapp.com/session")
+      .then(console.log())
+  */
+ 
+  render()
+  {
   return (
     
     <div className="App">
@@ -61,11 +67,13 @@ function App() {
     </tr>
   </thead>
   <tbody>
-   {players.map(renderPlayer)}
+   {this.state.data1.map(renderPlayer)}
+   {console.log(this.state.data1)}
   </tbody>
 </ReactBootStrap.Table>
     </div>
   );
+}
 }
 
 export default App;
