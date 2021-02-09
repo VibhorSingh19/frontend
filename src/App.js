@@ -3,7 +3,7 @@ import React,{Component} from 'react';
 import './App.css';
 import * as ReactBootStrap from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {browserHistory} from "react-router";
   
 
 /*const players=[{"SS_id":1001,"SS_Name":"Session1","SS_Duration":112,"SS_Type":"V"},
@@ -14,15 +14,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   */
   //console.log(players);
   var route=1;
-  const onRouteChange=()=>{
-  route=0;
+  const onRouteChange=(SS)=>{
+  //browserHistory.push('/session');
   }
+
   const renderPlayer=(player,index)=>{
     return(
   
       <tr key={index}>
         <td>{player.SS_id}</td>
-        <button onClick={()=>onRouteChange()}><td >{player.SS_Name}</td></button>
+        <button onClick={()=>onRouteChange(player.SS_Type)}><td >{player.SS_Name}</td></button>
         <td>{player.SS_Duration}</td>
         <td>{player.SS_Type}</td>
       </tr>
@@ -34,7 +35,7 @@ class App extends Component{
   state={
     loading:true,
     data1:[],
-    rou:0
+    rou:5
   }
   
   
@@ -75,7 +76,6 @@ async componentDidMount(){
   </thead>
   <tbody>
    {this.state.data1.map(renderPlayer)}
-   {console.log(this.state.rou)}
    </tbody>
 </ReactBootStrap.Table>
     </div>
