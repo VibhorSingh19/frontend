@@ -13,14 +13,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   {"SS_id":1005,"SS_Name":"Session5","SS_Duration":15,"SS_Type":"P"}]
   */
   //console.log(players);
-  
-  var players=[];
+  var route=1;
+  const onRouteChange=()=>{
+  route=0;
+  }
   const renderPlayer=(player,index)=>{
     return(
   
       <tr key={index}>
         <td>{player.SS_id}</td>
-        <a href={"https://ibm-sprint.herokuapp.com/content/"+player.SS_id}><td>{player.SS_Name}</td></a>
+        <button onClick={()=>onRouteChange()}><td >{player.SS_Name}</td></button>
         <td>{player.SS_Duration}</td>
         <td>{player.SS_Type}</td>
       </tr>
@@ -31,13 +33,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends Component{
   state={
     loading:true,
-    data1:[]
+    data1:[],
+    rou:0
   }
+  
+  
 async componentDidMount(){
   const response = await fetch("https://ibm-sprint.herokuapp.com/session");
   const data=await response.json();
   
   this.setState({data1: data});
+  this.setState({rou:route });
+  
   //console.log(this.state.data1);
 }
   /*
@@ -68,8 +75,8 @@ async componentDidMount(){
   </thead>
   <tbody>
    {this.state.data1.map(renderPlayer)}
-   {console.log(this.state.data1)}
-  </tbody>
+   {console.log(this.state.rou)}
+   </tbody>
 </ReactBootStrap.Table>
     </div>
   );
