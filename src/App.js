@@ -6,12 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useHistory} from "react-router";
 import Pdf1 from './pdf_component';  
 import Vid from './Vid';  
-const players=[{"SS_id":1001,"SS_Name":"Session1","SS_Duration":112,"SS_Type":"V"},
+/*const players=[{"SS_id":1001,"SS_Name":"Session1","SS_Duration":112,"SS_Type":"V"},
   {"SS_id":1002,"SS_Name":"Session2","SS_Duration":60,"SS_Type":"V"},
   {"SS_id":1003,"SS_Name":"Session3","SS_Duration":15,"SS_Type":"P"},
   {"SS_id":1004,"SS_Name":"Session4","SS_Duration":120,"SS_Type":"V"},
   {"SS_id":1005,"SS_Name":"Session5","SS_Duration":15,"SS_Type":"P"}]
-  
+  */
   //console.log(players);
   var route=1;
     
@@ -51,15 +51,14 @@ class App extends Component{
     )
   }
    
-/*async componentDidMount(){
+async componentDidMount(){
   const response = await fetch("https://ibm-sprint.herokuapp.com/session");
   const data=await response.json();
   
   this.setState({data1: data});
-  this.setState({rou:route });
   
   //console.log(this.state.data1);
-}*/
+}
   /*
   
   //console.log(this)
@@ -88,7 +87,7 @@ class App extends Component{
   </tr>
 </thead>
 <tbody>
- {players.map(this.renderPlayer)}
+ {this.state.data1.map(this.renderPlayer)}
  
  </tbody>
 </ReactBootStrap.Table>
