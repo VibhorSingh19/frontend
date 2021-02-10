@@ -1,25 +1,16 @@
 import React from 'react';
 
-function pdf({isSignedIn}) {
+function pdf() {
  
  
     
-    if (isSignedIn) {
-      return (
       <nav>
-          <p>{isSignedIn}</p>	
+          <p>"PDF"</p>	
      </nav>
-      );
+    
      }
-     else
-     {
-     return (
-      <nav>	
-    </nav>
-      );
-     }	
             
   
 
-}
+
 export default pdf;

@@ -3,43 +3,54 @@ import React,{Component} from 'react';
 import './App.css';
 import * as ReactBootStrap from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {browserHistory} from "react-router";
-  
+import {useHistory} from "react-router";
+import pfd1 from './pdf';  
 
-/*const players=[{"SS_id":1001,"SS_Name":"Session1","SS_Duration":112,"SS_Type":"V"},
+const players=[{"SS_id":1001,"SS_Name":"Session1","SS_Duration":112,"SS_Type":"V"},
   {"SS_id":1002,"SS_Name":"Session2","SS_Duration":60,"SS_Type":"V"},
   {"SS_id":1003,"SS_Name":"Session3","SS_Duration":15,"SS_Type":"P"},
   {"SS_id":1004,"SS_Name":"Session4","SS_Duration":120,"SS_Type":"V"},
   {"SS_id":1005,"SS_Name":"Session5","SS_Duration":15,"SS_Type":"P"}]
-  */
+  
   //console.log(players);
   var route=1;
-  const onRouteChange=(SS)=>{
-  //browserHistory.push('/session');
-  }
+    
+  
 
-  const renderPlayer=(player,index)=>{
+ 
+  
+class App extends Component{
+  state={
+    loading:true,
+    data1:[],
+    rou:5,
+    ssid:0,
+    var1:"",
+  }
+   onRouteChange=(SS,ID)=>{
+    if(SS==='V')
+    {
+      this.setState({ssid:ID,var1:SS });
+    }
+    else if(SS==='P')
+    {
+      this.setState({ssid:ID,var1:SS });
+    }
+  
+  }
+  renderPlayer=(player,index)=>{
     return(
   
       <tr key={index}>
         <td>{player.SS_id}</td>
-        <button onClick={()=>onRouteChange(player.SS_Type)}><td >{player.SS_Name}</td></button>
+        <button onClick={()=>this.onRouteChange(player.SS_Type,player.SS_id)}><td >{player.SS_Name}</td></button>
         <td>{player.SS_Duration}</td>
         <td>{player.SS_Type}</td>
       </tr>
     )
   }
    
-  
-class App extends Component{
-  state={
-    loading:true,
-    data1:[],
-    rou:5
-  }
-  
-  
-async componentDidMount(){
+/*async componentDidMount(){
   const response = await fetch("https://ibm-sprint.herokuapp.com/session");
   const data=await response.json();
   
@@ -47,7 +58,7 @@ async componentDidMount(){
   this.setState({rou:route });
   
   //console.log(this.state.data1);
-}
+}*/
   /*
   
   //console.log(this)
@@ -75,7 +86,8 @@ async componentDidMount(){
     </tr>
   </thead>
   <tbody>
-   {this.state.data1.map(renderPlayer)}
+   {players.map(this.renderPlayer)}
+   {this.state.var1==='P'?<nav>"PDF"</nav>:<nav>"Video"</nav>}
    </tbody>
 </ReactBootStrap.Table>
     </div>
