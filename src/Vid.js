@@ -1,16 +1,15 @@
-import React from 'react';
 
-function Vid({stateId}){
- 
- 
+import React from 'react';
+import ReactPlayer from 'react-player';
+function Vid({id}) {
     
-      return(<div>
-          <h1>Video {stateId}</h1>
-          {console.log("Video")}	
-     </div>
-      )
-     }
-            
+    return (
+        <>
+        <h1>Hello: {id}</h1>
+        <ReactPlayer url="http://www.w3schools.com/html/mov_bbb.mp4" controls />
+        </>
+    )
+} 
   
 
 

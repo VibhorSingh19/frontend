@@ -36,7 +36,7 @@ class App extends Component{
     {
       this.setState({ssid:ID,var1:SS });
     }
-    this.setState({rou:10 });
+    this.setState({rou:10 }); 
   
   }
   renderPlayer=(player,index)=>{
