@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import pdf from './pdf';
+import Pdf from './pdf_component';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
